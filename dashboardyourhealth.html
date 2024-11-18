@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - YourHealth</title>
+    <link rel="stylesheet" href="yourhealthcss/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>YourHealth</h1>
+            </div>
+            <ul class="menu">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Daftar Dokter</a></li>
+                <li><a href="#">Jadwal</a></li>
+                <li><a href="#">Pengaturan</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <header>
+                <h2>Dashboard</h2>
+                <div class="profile">
+                    <p>Admin</p>
+                    <img src="profile.png" alt="Profile Picture">
+                </div>
+            </header>
+
+            <section class="dashboard-section">
+                <!-- Daftar Dokter -->
+                <div class="card">
+                    <h3>Daftar Dokter</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nama Dokter</th>
+                                <th>Spesialisasi</th>
+                                <th>Kontak</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dr. Andi Setiawan</td>
+                                <td>Umum</td>
+                                <td>021-12345678</td>
+                            </tr>
+                            <tr>
+                                <td>Dr. Maya Kusuma</td>
+                                <td>Spesialis Anak</td>
+                                <td>021-98765432</td>
+                            </tr>
+                            <!-- Data Dokter Lainnya -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Jadwal Janji Temu -->
+                <div class="card">
+                    <h3>Jadwal Janji Temu</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Nama Dokter</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024-10-08</td>
+                                <td>10:00 AM</td>
+                                <td>Dr. Andi Setiawan</td>
+                            </tr>
+                            <tr>
+                                <td>2024-10-09</td>
+                                <td>02:00 PM</td>
+                                <td>Dr. Maya Kusuma</td>
+                            </tr>
+                            <!-- Data Jadwal Lainnya -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourHealth - Medical Booking Platform</title>
+    <link rel="stylesheet" href="yourhealthcss/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">YourHealth</div>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#dokter">Dokter</a></li>
+            <li><a href="#jadwal">Jadwal</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#login" class="login-btn">Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Booking Janji<br>Temu Sekarang</h1>
+            <p>Platform mudah untuk melakukan janji temu dengan <strong>Ribuan Dokter Terpercaya</strong>, agar Anda sehat sentosa dan bugar setiap hari.</p>
+        </div>
+        <div class="hero-image">
+            <img src="C:/Users/asus/Documents/Tugas Kuliah/Praktikum Pemweb/assets/Dokter.png" alt="Healthcare Professionals">
+        </div>
+    </main>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+    
+        navToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Optional: Animate hamburger to X
+            const spans = this.getElementsByTagName('span');
+            this.classList.toggle('active');
+        });
+    });
+    </script>
+</body>
+</html>
