@@ -1,9 +1,9 @@
-/* style.css */
+/* Reset dan Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
@@ -18,6 +18,8 @@
     color: white;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
 }
 
 .sidebar.collapsed {
@@ -35,6 +37,12 @@
 .logo img {
     max-width: 150px;
     height: auto;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .logo img {
+    opacity: 0;
+    width: 0;
 }
 
 .toggle-btn {
@@ -43,6 +51,11 @@
     color: white;
     cursor: pointer;
     font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.toggle-btn:hover {
+    transform: rotate(90deg);
 }
 
 .menu {
@@ -55,6 +68,7 @@
     margin: 8px 0;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .menu li:hover {
@@ -70,6 +84,7 @@
     text-decoration: none;
     display: flex;
     align-items: center;
+    white-space: nowrap;
 }
 
 .menu li a i {
@@ -78,8 +93,20 @@
     text-align: center;
 }
 
+.menu li a span {
+    transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.menu li a span.hidden {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+}
+
 .sidebar.collapsed .menu li a span {
-    display: none;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
 }
 
 .logout {
@@ -90,6 +117,7 @@
 .main-content {
     flex: 1;
     background-color: #f5f5f5;
+    transition: margin-left 0.3s ease;
 }
 
 header {
@@ -134,10 +162,13 @@ h2 {
     }
 
     .sidebar .menu li a span {
-        display: none;
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
     }
 
     .logo img {
-        display: none;
+        opacity: 0;
+        width: 0;
     }
 }
