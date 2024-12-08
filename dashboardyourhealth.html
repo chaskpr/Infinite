@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
                     <a href="#"><i class="fas fa-home"></i> <span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-user-md"></i> <span>Dokter</span></a>
+                    <a href="admindokter.html"><i class="fas fa-user-md"></i> <span>Dokter</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fas fa-receipt"></i> <span>Transaksi</span></a>
@@ -43,7 +43,6 @@
                 </div>
             </header>
             <div class="content">
-                <!-- Content akan ditambahkan di sini -->
                 <h2>Selamat Datang di YourHealth Dashboard</h2>
             </div>
         </main>
@@ -52,9 +51,16 @@
     <script>
         const sidebar = document.getElementById('sidebar');
         const toggleBtn = document.getElementById('toggleBtn');
+        const sidebarLinks = sidebar.querySelectorAll('.menu li a span');
 
         toggleBtn.addEventListener('click', () => {
+            // Toggle sidebar width
             sidebar.classList.toggle('collapsed');
+            
+            // Toggle visibility of link text
+            sidebarLinks.forEach(link => {
+                link.classList.toggle('hidden');
+            });
         });
     </script>
 </body>
