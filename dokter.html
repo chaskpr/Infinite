@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourHealth - Daftar Dokter</title>
+    <link rel="stylesheet" href="yourhealthcss/dokter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">YourHealth</div>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="yourhealth.html">Home</a></li>
+            <li><a href="#dokter" class="active">Dokter</a></li>
+            <li><a href="#jadwal">Jadwal</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="yourhealthlogin.html" class="login-btn">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Daftar Dokter</h1>
+            <p>Temukan dokter yang tepat untuk kebutuhan kesehatan Anda dari berbagai spesialisasi.</p>
+        </div>
+    </main>
+
+    <!-- Dokter Section -->
+    <section class="dokter-section">
+        <!-- Popup Box -->
+        <div class="popup-overlay" id="popup">
+            <div class="popup-box">
+                <button class="popup-close" id="popupClose">&times;</button>
+                <div class="popup-content">
+                    <h2 id="popupName"></h2>
+                    <p id="popupSpecialty"></p>
+                    <p id="popupSchedule"></p>
+                    <p id="popupContact"></p>
+                </div>
+            </div>
+        </div>
+        <div class="search-filter">
+            <input type="text" id="searchDokter" placeholder="Cari Dokter...">
+            <select id="filterSpesialis">
+                <option value="">Semua Spesialis</option>
+                <option value="umum">Dokter Umum</option>
+                <option value="kandungan">Dokter Kandungan</option>
+                <option value="anak">Dokter Anak</option>
+                <option value="jantung">Dokter Jantung</option>
+            </select>
+        </div>
+
+        <div class="dokter-grid">
+            <div class="dokter-card">
+                <img src="/api/placeholder/150/150" alt="Dr. Maria" class="dokter-img">
+                <div class="dokter-info">
+                    <h3>Dr. Maria Setiawan</h3>
+                    <p class="spesialis">Dokter Umum</p>
+                    <div class="jadwal">
+                        <p><i class="fas fa-calendar"></i> Senin-Rabu: 09:00-12:00</p>
+                        <span class="status available">Tersedia</span>
+                    </div>
+                    <div class="kontak">
+                        <p><i class="fas fa-phone"></i> 0812-3456-7890</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dokter-card">
+                <img src="/api/placeholder/150/150" alt="Dr. Budi" class="dokter-img">
+                <div class="dokter-info">
+                    <h3>Dr. Budi Hartono</h3>
+                    <p class="spesialis">Dokter Anak</p>
+                    <div class="jadwal">
+                        <p><i class="fas fa-calendar"></i> Kamis-Jumat: 14:00-17:00</p>
+                        <span class="status unavailable">Tidak Tersedia</span>
+                    </div>
+                    <div class="kontak">
+                        <p><i class="fas fa-phone"></i> 0821-9876-5432</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dokter-card">
+                <img src="/api/placeholder/150/150" alt="Dr. Ani" class="dokter-img">
+                <div class="dokter-info">
+                    <h3>Dr. Ani Wijaya</h3>
+                    <p class="spesialis">Dokter Kandungan</p>
+                    <div class="jadwal">
+                        <p><i class="fas fa-calendar"></i> Selasa-Kamis: 10:00-13:00</p>
+                        <span class="status available">Tersedia</span>
+                    </div>
+                    <div class="kontak">
+                        <p><i class="fas fa-phone"></i> 0857-2345-6789</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const searchInput = document.getElementById('searchDokter');
+        const filterSelect = document.getElementById('filterSpesialis');
+        const dokterCards = document.querySelectorAll('.dokter-card');
+        const popupClose = document.getElementById("popupClose");
+        const popupName = document.getElementById("popupName");
+        const popupSpecialty = document.getElementById("popupSpecialty");
+        const popupSchedule = document.getElementById("popupSchedule");
+        const popupContact = document.getElementById("popupContact");
+
+        function filterDokter() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const spesialisFilter = filterSelect.value.toLowerCase();
+
+            dokterCards.forEach(card => {
+                const nama = card.querySelector('h3').textContent.toLowerCase();
+                const spesialis = card.querySelector('.spesialis').textContent.toLowerCase();
+
+                const namaMatch = nama.includes(searchTerm);
+                const spesialisMatch = spesialisFilter === '' || spesialis.includes(spesialisFilter);
+
+                card.style.display = (namaMatch && spesialisMatch) ? 'block' : 'none';
+            });
+        }
+
+        searchInput.addEventListener('input', filterDokter);
+        filterSelect.addEventListener('change', filterDokter);
+        const popup = document.getElementById("popup");
+    
+        dokterCards.forEach((card) => {
+            card.addEventListener("click", () => {
+                const name = card.querySelector("h3").textContent;
+                const specialty = card.querySelector(".spesialis").textContent;
+                const schedule = card.querySelector(".jadwal").textContent;
+                const contact = card.querySelector(".kontak").textContent;
+        
+                popupName.textContent = name;
+                popupSpecialty.textContent = `Spesialis: ${specialty}`;
+                popupSchedule.textContent = schedule;
+                popupContact.textContent = contact;
+        
+                popup.classList.add("visible");
+            });
+        });
+        
+        popupClose.addEventListener("click", () => {
+            popup.classList.remove("visible");
+        });
+        
+        popup.addEventListener("click", (event) => {
+            if (event.target === popup) {
+                popup.classList.remove("visible");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourHealth - Daftar Dokter</title>
+    <link rel="stylesheet" href="yourhealthcss/admindokter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <img src="/api/placeholder/150/50" alt="YourHealth Logo">
+                <button class="toggle-btn" id="toggleBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="menu">
+                <li>
+                    <a href="dashboardyourhealth.html"><i class="fas fa-home"></i> <span>Dashboard</span></a>
+                </li>
+                <li class="active">
+                    <a href="admindokter.html"><i class="fas fa-user-md"></i> <span>Dokter</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="fas fa-receipt"></i> <span>Transaksi</span></a>
+                </li>
+                <li class="logout">
+                    <a href="#"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Daftar Dokter</h1>
+                <div class="user-info">
+                    <span>Welcome, Admin</span>
+                    <img src="/api/placeholder/40/40" alt="User Profile" class="profile-img">
+                </div>
+            </header>
+            
+            <div class="content">
+                <div class="search-filter">
+                    <input type="text" id="searchDokter" placeholder="Cari Dokter...">
+                    <select id="filterSpesialis">
+                        <option value="">Semua Spesialis</option>
+                        <option value="umum">Dokter Umum</option>
+                        <option value="kandungan">Dokter Kandungan</option>
+                        <option value="anak">Dokter Anak</option>
+                        <option value="jantung">Dokter Jantung</option>
+                    </select>
+                </div>
+
+                <div class="dokter-grid">
+                    <div class="dokter-card">
+                        <img src="/api/placeholder/150/150" alt="Dr. Maria" class="dokter-img">
+                        <div class="dokter-info">
+                            <h3>Dr. Maria Setiawan</h3>
+                            <p class="spesialis">Dokter Umum</p>
+                            <div class="jadwal">
+                                <p><i class="fas fa-calendar"></i> Senin-Rabu: 09:00-12:00</p>
+                                <span class="status available">Tersedia</span>
+                            </div>
+                            <div class="kontak">
+                                <p><i class="fas fa-phone"></i> 0812-3456-7890</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dokter-card">
+                        <img src="/api/placeholder/150/150" alt="Dr. Budi" class="dokter-img">
+                        <div class="dokter-info">
+                            <h3>Dr. Budi Hartono</h3>
+                            <p class="spesialis">Dokter Anak</p>
+                            <div class="jadwal">
+                                <p><i class="fas fa-calendar"></i> Kamis-Jumat: 14:00-17:00</p>
+                                <span class="status unavailable">Tidak Tersedia</span>
+                            </div>
+                            <div class="kontak">
+                                <p><i class="fas fa-phone"></i> 0821-9876-5432</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dokter-card">
+                        <img src="/api/placeholder/150/150" alt="Dr. Ani" class="dokter-img">
+                        <div class="dokter-info">
+                            <h3>Dr. Ani Wijaya</h3>
+                            <p class="spesialis">Dokter Kandungan</p>
+                            <div class="jadwal">
+                                <p><i class="fas fa-calendar"></i> Selasa-Kamis: 10:00-13:00</p>
+                                <span class="status available">Tersedia</span>
+                            </div>
+                            <div class="kontak">
+                                <p><i class="fas fa-phone"></i> 0857-2345-6789</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const sidebarLinks = sidebar.querySelectorAll('.menu li a span');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            
+            sidebarLinks.forEach(link => {
+                link.classList.toggle('hidden');
+            });
+        });
+
+        // Fitur pencarian dan filter
+        const searchInput = document.getElementById('searchDokter');
+        const filterSelect = document.getElementById('filterSpesialis');
+        const dokterCards = document.querySelectorAll('.dokter-card');
+
+        function filterDokter() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const spesialisFilter = filterSelect.value.toLowerCase();
+
+            dokterCards.forEach(card => {
+                const nama = card.querySelector('h3').textContent.toLowerCase();
+                const spesialis = card.querySelector('.spesialis').textContent.toLowerCase();
+                
+                const namaMatch = nama.includes(searchTerm);
+                const spesialisMatch = spesialisFilter === '' || spesialis.includes(spesialisFilter);
+
+                card.style.display = (namaMatch && spesialisMatch) ? 'block' : 'none';
+            });
+        }
+
+        searchInput.addEventListener('input', filterDokter);
+        filterSelect.addEventListener('change', filterDokter);
+    </script>
+</body>
+</html>
